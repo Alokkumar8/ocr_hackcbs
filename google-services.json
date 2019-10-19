@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "358704454094",
+    "firebase_url": "https://ocr-hackcbs.firebaseio.com",
+    "project_id": "ocr-hackcbs",
+    "storage_bucket": "ocr-hackcbs.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358704454094:android:e75a9e0d2974ecd431f39f",
+        "android_client_info": {
+          "package_name": "com.hackcbs.ocreclipse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358704454094-93f34ucvd2u6n2dl142od4m707c5o240.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRbH8rwik30Cn-rhhpakVrPjq5AdCkMtg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358704454094-93f34ucvd2u6n2dl142od4m707c5o240.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
