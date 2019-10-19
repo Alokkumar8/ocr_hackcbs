@@ -37,6 +37,8 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public boolean onActionSelected(SpeedDialActionItem actionItem) {
                 if (actionItem.getId() == R.id.menu_camera) {
+                    Intent intent = new Intent(HomeActivity.this, TakePhotoActivity.class);
+                    startActivity(intent);
                     return true;
                 } else if (actionItem.getId() == R.id.menu_gallery) {
                     return true;
@@ -45,10 +47,5 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    public void addInvoice(View view) {
-        Intent intent = new Intent(HomeActivity.this, TakePhotoActivity.class);
-        startActivity(intent);
     }
 }
