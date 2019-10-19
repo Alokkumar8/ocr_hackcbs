@@ -1,11 +1,15 @@
 package com.hackcbs.ocreclipse;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toolbar;
+
+import com.leinardi.android.speeddial.SpeedDialActionItem;
+import com.leinardi.android.speeddial.SpeedDialView;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -18,6 +22,29 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         toolbar = findViewById(R.id.tbHome);
+
+        setSupportActionBar(toolbar);
+        ActionBar actionbar;
+        actionbar = getSupportActionBar();
+        assert actionbar != null;
+        actionbar.setTitle("OCR HackCBS");
+
+        SpeedDialView speedDialView = findViewById(R.id.fabAddInvoice);
+
+        speedDialView.inflate(R.menu.menu_speed_dial);
+
+        speedDialView.setOnActionSelectedListener(new SpeedDialView.OnActionSelectedListener() {
+            @Override
+            public boolean onActionSelected(SpeedDialActionItem actionItem) {
+                if (actionItem.getId() == R.id.menu_camera) {
+                    return true;
+                } else if (actionItem.getId() == R.id.menu_gallery) {
+                    return true;
+                }
+                return false;
+            }
+        });
+
     }
 
     public void addInvoice(View view) {
