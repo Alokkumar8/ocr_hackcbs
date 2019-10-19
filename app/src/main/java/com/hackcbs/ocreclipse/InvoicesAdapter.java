@@ -58,7 +58,6 @@ public class InvoicesAdapter extends RecyclerView.Adapter<InvoicesAdapter.MyView
         }
     }
 
-
     @Override
     public int getItemCount() {
         return mDataset.size();

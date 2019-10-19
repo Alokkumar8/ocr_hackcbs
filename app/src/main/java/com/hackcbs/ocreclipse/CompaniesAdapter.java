@@ -28,33 +28,28 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.MyVi
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-
-        Map<String, Object> time = mDataset.get(position);
-        holder.mInvoiceTitle.setText("NB0046b.jpg");
-        holder.mInvoiceTime.setText("12:57 PM 19 Sep 2019");
+        holder.mCompanyTitle.setText("Computer Network");
+        holder.mCompanyInvoiceNumber.setText("19 Invoices");
     }
 
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // create a new view
+
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.invoice_row, parent, false);
+                .inflate(R.layout.company_row, parent, false);
 
         return new CompaniesAdapter.MyViewHolder(v);
     }
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
-        public TextView mInvoiceTitle, mInvoiceTime;
 
+        public TextView mCompanyTitle, mCompanyInvoiceNumber;
         public MyViewHolder(View v) {
             super(v);
-            mInvoiceTitle = v.findViewById(R.id.txt_invoice_title);
-            mInvoiceTime = v.findViewById(R.id.txt_invoice_time);
+            mCompanyTitle = v.findViewById(R.id.txt_company_title);
+            mCompanyInvoiceNumber = v.findViewById(R.id.txt_company_invoice_number);
         }
     }
 
