@@ -9,7 +9,7 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/medico_with_pablo_288" />
+            android:src="@drawable/splash_image" />
     </item>
 
 </layer-list>
