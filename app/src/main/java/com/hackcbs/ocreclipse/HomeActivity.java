@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -90,23 +91,26 @@ public class HomeActivity extends AppCompatActivity {
                 FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance().getOnDeviceTextRecognizer();
 
                 Task<FirebaseVisionText> result = detector.processImage(image)
-                                .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
+                        .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
+                            @Override
+                            public void onSuccess(FirebaseVisionText firebaseVisionText) {
+
+                                String resultText = firebaseVisionText.getText();
+
+                                Intent intent = new Intent(HomeActivity.this, InvoiceDetailsActivity.class);
+                                intent.putExtra("details", resultText);
+                                startActivity(intent);
+
+                            }
+                        })
+                        .addOnFailureListener(
+                                new OnFailureListener() {
                                     @Override
-                                    public void onSuccess(FirebaseVisionText firebaseVisionText) {
-
-                                      String resultText = firebaseVisionText.getText();
-                                        Log.d("hackcbs", resultText);
-
+                                    public void onFailure(@NonNull Exception e) {
+                                        // Task failed with an exception
+                                        // ...
                                     }
-                                })
-                                .addOnFailureListener(
-                                        new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                // Task failed with an exception
-                                                // ...
-                                            }
-                                        });
+                                });
 
 
             } catch (FileNotFoundException e) {
