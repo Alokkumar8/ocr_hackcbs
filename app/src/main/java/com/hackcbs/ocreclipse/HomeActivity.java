@@ -1,5 +1,6 @@
 package com.hackcbs.ocreclipse;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -11,11 +12,20 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.ml.vision.FirebaseVision;
+import com.google.firebase.ml.vision.common.FirebaseVisionImage;
+import com.google.firebase.ml.vision.text.FirebaseVisionText;
+import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
 import com.leinardi.android.speeddial.SpeedDialActionItem;
 import com.leinardi.android.speeddial.SpeedDialView;
 
+import java.io.Console;
 import java.io.FileNotFoundException;
 
 public class HomeActivity extends AppCompatActivity {
@@ -74,7 +84,31 @@ public class HomeActivity extends AppCompatActivity {
             cursor.close();
             try {
                 bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage));
-//                circleImageView.setImageBitmap(bitmap);
+//
+                FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
+
+                FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance().getOnDeviceTextRecognizer();
+
+                Task<FirebaseVisionText> result = detector.processImage(image)
+                                .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
+                                    @Override
+                                    public void onSuccess(FirebaseVisionText firebaseVisionText) {
+
+                                      String resultText = firebaseVisionText.getText();
+                                        Log.d("hackcbs", resultText);
+
+                                    }
+                                })
+                                .addOnFailureListener(
+                                        new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                // Task failed with an exception
+                                                // ...
+                                            }
+                                        });
+
+
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
